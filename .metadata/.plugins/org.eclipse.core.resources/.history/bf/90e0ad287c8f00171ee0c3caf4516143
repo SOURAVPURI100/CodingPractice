@@ -1,0 +1,22 @@
+package com.Leetcode;
+// https://leetcode.com/problems/strange-printer/description/
+// 664. Strange Printer
+public class StrangePrinter {
+
+	public static void main(String[] args) {
+		
+
+	}
+	// abbac => aaaaa => abbac
+    // ababbaa => aaaaaaa => abaaaaa=> ababbaa 
+    // abcbdabcabbaa => aaaaaaaaaaaaa => 
+    public static int strangePrinter(String s) {
+        char [] array = s.toCharArray();
+        int sol = 0;
+    	
+    	
+    	
+    	
+    	return sol;
+    }
+}

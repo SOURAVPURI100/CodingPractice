@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Counting {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter wr = new PrintWriter(System.out);
+        int T = Integer.parseInt(br.readLine().trim());
+        for(int t_i=0; t_i<T; t_i++)
+        {
+            String[] in=br.readLine().split(" ");
+            long N = Long.parseLong(in[0]);
+            long K = Long.parseLong(in[1]);
+
+            long out_ = solve(K, N);
+            System.out.println(out_);
+            System.out.println("");
+         }
+
+         wr.close();
+         br.close();
+    }
+    static long solve(long K, long N){
+        // write code here
+    
+    }
+}

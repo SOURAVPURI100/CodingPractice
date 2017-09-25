@@ -1,0 +1,60 @@
+
+import java.util.*;
+public class CopyPaste {
+
+//	https://code.google.com/codejam/contest/12234486/dashboard
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner in = new Scanner(System.in);
+		
+		int test = in.nextInt();
+		for(int i =1; i <= test; i++){
+			int out = 0;
+			String str = in.nextLine();
+			String clip ="";
+			String substr = "";
+			for(int j = str.length() -1; j > 0;){
+				int local = 0;
+				int tempJ = -1;
+				for(int k = j-1; k > 0; k-- ){
+					
+					substr = str.substring(k, j);
+					tempJ = k -1;
+					
+					if(check(str.substring(0, k), substr)){
+						if(clip.equals(substr)){
+							local = 1;
+						}
+						else{
+							local =  2;
+						}
+						tempJ = k-1;
+					}
+					else{
+						if(local != 0){
+							local = 2;
+						}
+	
+					}
+					
+				}
+				out  = out + local;
+				j = tempJ;
+					
+			}
+			out = out + 1;
+			
+			
+		}
+
+	}
+	public static boolean check(String main, String substr){
+		
+		if(main.contains(substr))
+			return true;
+		return false;
+		
+	}
+
+}

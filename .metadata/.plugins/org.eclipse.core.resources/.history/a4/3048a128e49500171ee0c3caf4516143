@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+public class Counting {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter wr = new PrintWriter(System.out);
+		int T = Integer.parseInt(br.readLine().trim());
+		for (int t_i = 0; t_i < T; t_i++) {
+			String[] in = br.readLine().split(" ");
+			int N = Integer.parseInt(in[0]);
+			int K = Integer.parseInt(in[1]);
+
+			int out_ = solve(K, N);
+			System.out.println(out_);
+//			System.out.println("");
+		}
+
+		wr.close();
+		br.close();
+	}
+
+	static int solve(int K, int N) {
+		double[] sol = new double[N + 1];
+		double cons = (double) Math.pow(10, 9) + 7;
+		sol[1] = 1;
+		sol[0] = 1;
+
+		for (int i = 2; i <= N; i++) {
+			double val = 0;
+			for (int j = i - 1; j >= i - K && j >= 0; j--) {
+
+				val += sol[j];
+
+			}
+
+			sol[i] = val;
+
+		}
+
+		return (int) ((sol[N]) % cons);
+
+	}
+}

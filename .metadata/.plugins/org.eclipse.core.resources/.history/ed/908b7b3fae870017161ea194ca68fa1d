@@ -1,0 +1,76 @@
+package com.TCO;
+//https://arena.topcoder.com/#/u/practiceCode/16527/48825/13918/2/326683
+
+import java.util.*;
+import java.lang.*;
+
+//Definition
+//Class: ABBA
+//Method: canObtain
+//Parameters: String, String
+//Returns: String
+//Method signature: String canObtain(String initial, String target)
+//(be sure your method is public)
+
+
+// Examples : - A ABBA
+// AA -> AB -> ABA, BAB
+// BA,BB => BAA, ABB, BBA, BBB
+public class ABBA {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String initial = in.nextLine();
+		String target = in.nextLine();
+		
+		System.out.println(canObtain(initial, target));
+
+	}
+	
+	public static String canObtain(String initial, String target){
+		Set<String> set = new HashSet<>();
+		Queue<String> words = new LinkedList<>();
+		
+		words.add(initial);
+		set.add(initial);
+		while(!words.isEmpty()){
+			String word = words.poll();
+			if(word.length() > target.length()){
+				break;
+			}
+			
+			if(word.equals(target)){
+				return  "Possible";
+			}
+			
+//			Build new words
+			String wordRule1 = word + "A";
+			String wordRule2 = reverse(word)+ "B";
+			
+			// Check validity
+			if(target.contains(wordRule1) || target.contains(reverse(wordRule1))){
+				if(!set.contains(wordRule1)){
+					words.add(wordRule1);
+					set.add(wordRule1);
+				}
+				
+			}
+			if(target.contains(wordRule2) || target.contains(reverse(wordRule2))){
+				if(!set.contains(wordRule2)){
+					words.add(wordRule2);
+					set.add(wordRule2);
+				}
+			}
+			
+			
+		}
+			
+		return "Impossible";
+	}
+	
+	public static String reverse(String word){
+		StringBuilder str = new StringBuilder(word);
+		return str.reverse().toString();
+	}
+
+}

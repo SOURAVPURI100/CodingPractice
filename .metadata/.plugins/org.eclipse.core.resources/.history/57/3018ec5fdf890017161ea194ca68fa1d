@@ -1,0 +1,60 @@
+package com.Leetcode;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+// https://leetcode.com/problems/longest-valid-parentheses/description/
+//32. Longest Valid Parentheses
+public class LongValidParenthesis {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+
+		String str = in.nextLine();
+
+		System.out.println(longestValidParentheses(str));
+
+	}
+
+	public static int longestValidParentheses(String s) {
+		// ")()())"
+		// (()
+		// () =2 => () => 4
+		// (())() ) = 2+2+2 = 6
+		// (()())(
+		// (()())
+
+		int globalAns = 0;
+		Stack<Character> stack = new Stack<>();
+		int tempCount = 0;
+		int stackCount = 0;
+		for (char ch : s.toCharArray()) {
+
+			if (ch == '(') {
+				stack.push('(');
+			} else if (ch == ')') {
+				if (stack.isEmpty()) {
+					tempCount = 0;
+					stackCount = 0;
+				} else {
+					stack.pop();
+					if (!stack.isEmpty()) {
+						stackCount += 2;
+					} else {
+						tempCount += stackCount;
+						if (globalAns < tempCount) {
+							globalAns = tempCount;
+						}
+					}
+
+				}
+
+			}
+
+		}
+
+		return Math.max(globalAns, stackCount);
+
+	}
+
+}

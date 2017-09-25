@@ -1,0 +1,25 @@
+package com.Leetcode;
+// 646. Maximum Length of Pair Chain
+// https://leetcode.com/problems/maximum-length-of-pair-chain/description/
+import java.util.*;
+
+public class LongestPairChain {
+
+	public static void main(String[] args) {
+		
+		
+		
+		
+	}
+	
+	 public int findLongestChain(int[][] pairs) {
+		 int count = 0;
+		 
+		 
+		 
+		 
+		 return count;
+	        
+	    }
+
+}

@@ -1,0 +1,13 @@
+package com.TCO;
+//https://arena.topcoder.com/#/u/practiceCode/16527/48825/13918/2/326683
+
+import java.util.Scanner;
+
+public class ABBA {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+
+	}
+
+}

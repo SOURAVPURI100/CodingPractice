@@ -1,0 +1,63 @@
+package CodeSprint;
+
+import java.util.Scanner;
+
+public class TraderProfit {
+
+	static int traderProfit(int k, int n, int[] A) {
+		// Complete this function
+		int[][] transArray = new int[A.length][k];
+
+		int out = 0;
+
+		for (int i = 0; i < A.length; i++) {
+
+			for (int j = i + 1; j < A.length; j++) {
+
+				for (int trans = 0; trans < k; trans++) {
+
+					int profit = A[j] - A[i];
+					int max_value = 0;
+					if (trans == 0) {
+						transArray[j][trans] = Math.max(transArray[j][trans], profit);
+					} else {
+						for (int l = 0; l < i; l++) {
+
+							max_value = Math.max(max_value, transArray[l][trans - 1]);
+						}
+
+						profit = profit + max_value;
+						transArray[j][trans] = Math.max(0, profit);
+					}
+
+				}
+
+			}
+
+		}
+		// Find maximum value in the matrix or 2D array
+		for (int i = 0; i < A.length; i++) {
+			for (int j = 0; j < k; j++) {
+				out = Math.max(out, transArray[i][j]);
+			}
+		}
+
+		return out;
+	}
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int q = in.nextInt();
+		for (int a0 = 0; a0 < q; a0++) {
+			int k = in.nextInt();
+			int n = in.nextInt();
+			int[] arr = new int[n];
+			for (int arr_i = 0; arr_i < n; arr_i++) {
+				arr[arr_i] = in.nextInt();
+			}
+			int result = traderProfit(k, n, arr);
+			System.out.println(result);
+		}
+		in.close();
+	}
+}

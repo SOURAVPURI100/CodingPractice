@@ -1,0 +1,70 @@
+package com.TCO;
+
+import java.util.*;
+// https://arena.topcoder.com/#/u/practiceCode/16319/46378/13642/1/325040
+public class AB {
+	
+	public static void main(String[] args){
+		Scanner in = new Scanner (System.in);
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	// AAAAABBBBB
+	public static String createString(int N, int K){
+		// AAAAAAAAAAA
+//		AAAAAAAAAB
+//		AAAABAABBB
+		boolean [] str = new boolean[N];
+		String string = "";
+		int globalA = N; 
+		int globalB = 0;
+		for(int i = 0; i < N; i++){
+			str[i] = true; // means A
+		}
+		int rightA = 0, rightB = 0;
+		for (int j = str.length -1; j >= 0; j--){
+				if(str[j] == false){ //if value is B
+					rightB++;
+					continue;
+				}
+				
+				// If value is A
+				int val = (globalA - rightA -1) - rightB;
+				if(val <= K){
+					K = K - val;
+					str[j] = false;
+					globalA--;
+					rightB++;
+				}
+				else{
+					rightA++;
+				}
+				
+				if(K == 0){
+					break;
+				}
+				
+			}
+		
+		if(K == 0){
+			for(int i =0; i<str.length; i++){
+				if(str[i]== true)
+					string = string+"A";
+				else
+					string = string+"B";
+			}
+			return string;
+			
+		}
+
+		return "";
+		
+				
+	}
+}

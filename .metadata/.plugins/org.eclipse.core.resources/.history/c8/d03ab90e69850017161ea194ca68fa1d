@@ -1,0 +1,49 @@
+package com.practice;
+
+import java.util.Scanner;
+
+// https://www.hackerrank.com/challenges/unbounded-knapsack/problem
+public class knapsack {
+
+	public static void main(String[] args) {
+
+		Scanner in = new Scanner(System.in);
+
+		int tests = in.nextInt();
+		for (int i = 1; i <= tests; i++) {
+
+			int n = in.nextInt();
+			int K = in.nextInt();
+
+			int[][] sol = new int[n + 1][K + 1];
+			int[] elements = new int[n + 1];
+			for (int j = 0; j < n; j++) {
+				elements[j + 1] = in.nextInt();
+
+			}
+
+			for (int j = 0; j <= n; j++) {
+
+				for (int k = 0; k <= K; k++) {
+
+					if (j == 0 || k == 0) {
+						sol[j][k] = 0;
+						continue;
+					}
+
+					if (elements[j - 1] > k) {
+						sol[j][k] = sol[j - 1][k];
+					} else {
+						sol[j][k] = Math.max(elements[j - 1] + sol[j - 1][k - elements[j - 1]], sol[j - 1][k]);
+					}
+
+				}
+
+			}
+
+			System.out.println(sol[n][K]);
+
+		}
+
+	}
+}

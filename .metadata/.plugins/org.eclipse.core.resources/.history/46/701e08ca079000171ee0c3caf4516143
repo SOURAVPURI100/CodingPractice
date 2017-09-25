@@ -1,0 +1,16 @@
+package com.Leetcode;
+
+public class LongestPairChain {
+
+	public static void main(String[] args) {
+
+	}
+
+	public int findLongestChain(int[][] pairs) {
+		int count = 0;
+
+		return count;
+
+	}
+
+}

@@ -1,0 +1,91 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+public class Numbers {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter wr = new PrintWriter(System.out);
+		int T = Integer.parseInt(br.readLine().trim());
+		for (int t_i = 0; t_i < T; t_i++) {
+			String[] in = br.readLine().split(" ");
+			int a = Integer.parseInt(in[0]);
+			int b = Integer.parseInt(in[1]);
+			int n = Integer.parseInt(in[2]);
+
+			int out_ = solve(a, b, n);
+			System.out.println(out_);
+			System.out.println("");
+		}
+
+		wr.close();
+		br.close();
+	}
+
+	static int solve(int a, int b, int n) {
+		// Write your code here
+
+		int lcm = LCM(a, b);
+
+		int jumps = lcm / a + lcm / b - 1;
+
+		int currNumber = (n / jumps) * lcm;
+
+		int leftJumps = n % jumps;
+
+		if (leftJumps == 0) {
+			return currNumber;
+		}
+//		for (int i = currNumber + 1; i <= Integer.MAX_VALUE; i++) {
+//
+//			if (i % a == 0 || i % b == 0) {
+//				leftJumps--;
+//			}
+//
+//			if (leftJumps == 0) {
+//				return i;
+//			}
+//		}
+		
+		int i = a, j =b;
+		
+		while (i <= Integer.MAX_VALUE && j < Integer.MAX_VALUE){
+			
+			if(i <= j){
+				leftJumps--;
+				i = i + a;
+			}
+			else{
+				leftJumps--;
+				j = j +b;
+			}
+			
+			if (leftJumps == 0) {
+				return Math.max(i, j) + currNumber;
+			}
+			
+		}
+
+		return 0;
+
+	}
+
+	static int LCM(int a, int b) {
+		// maximum number between a and b is stored in lcm
+		int lcm;
+		lcm = (a > b) ? a : b;
+
+		// Always true
+		while (true) {
+			if (lcm % a == 0 && lcm % b == 0) {
+
+				break;
+			}
+			++lcm;
+		}
+
+		return lcm;
+	}
+
+}

@@ -1,0 +1,31 @@
+package com.Leetcode;
+
+public class LongestPairChain {
+
+	public static void main(String[] args) {
+
+	}
+
+	public int findLongestChain(int[][] pairs) {
+		int count = 0;
+		int[] sol = new int[pairs.length];
+		for (int i = 0; i < pairs.length; i++) {
+			sol[i] = 1;
+			int start = pairs[i][0];
+			for (int j = i - 1; j >= 0; j--) {
+				int endJ = pairs[j][1];
+				if (start > endJ) {
+					sol[i] = Math.max(sol[i], sol[j] + 1);
+				}
+
+			}
+
+			count = Math.max(count, sol[i]);
+
+		}
+
+		return count;
+
+	}
+
+}
